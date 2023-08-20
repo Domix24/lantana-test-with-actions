@@ -23,6 +23,6 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
       - name: Git Tag
-        run: git tag -f -m "version ${{ github.event.inputs.target }}" ${{ github.event.inputs.version }} ${{ github.event.inputs.target }}
+        run: git tag -f ${{ github.event.inputs.version }} ${{ github.event.inputs.target }}
       - name: Git Push
         run: git push -f origin ${{ github.event.inputs.version }}
