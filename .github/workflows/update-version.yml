@@ -20,8 +20,8 @@ jobs:
           fetch-depth: 0
       - name: Git Config
         run: |
-          git config --local user.name github-actions
-          git config --local user.email github-actions@github.com
+          git config --local user.name domix24
+          git config --local user.email domix24@users.noreply.github.com
       - name: Git Tag
         run: git tag -f -m "version ${{ github.event.inputs.target }}" ${{ github.event.inputs.version }} ${{ github.event.inputs.target }}
       - name: Git Push
