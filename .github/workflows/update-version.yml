@@ -1,0 +1,26 @@
+name: Update Version
+run-name: Move ${{ github.event.inputs.version }} to ${{ github.event.inputs.target }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        required: true
+        description: The tag or reference to use
+      version:
+        required: true
+        description: The version to use
+
+jobs:
+  update-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Git Config
+        run: |
+          git config --local user.name github-actions
+          git config --local user.email github-actions@github.com
+      - name: Git Tag
+        run: git tag -f -m "version ${{ github.event.inputs.target }}" ${{ github.event.inputs.version }} ${{ github.event.inputs.target }}
+      - name: Git Push
+        run: git push -f origin ${{ github.event.inputs.version }}
